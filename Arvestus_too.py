@@ -49,6 +49,9 @@ try:
         if valik==1 :
             valik1(valik)
             break
+        elif valik==2:
+            valik2(valik)
+            break
         elif valik==5:
             valik5(valik)
             break

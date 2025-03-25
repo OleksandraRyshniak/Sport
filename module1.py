@@ -21,7 +21,7 @@ def sport(sportlane: str, tulemus)->any:
     return sportlased, tulemused
         
 
-def tabel(sportlased: list, tulemused:list)->None:
+def tabel(sportlased: list, tulemused:list)->str:
     """
     """
     for n in range(len(sportlased)):
@@ -29,7 +29,7 @@ def tabel(sportlased: list, tulemused:list)->None:
     return t
 
 
-def valik1(valik:int)->any:
+def valik1(valik:int)->str:
     """
     """
     i=0
@@ -44,7 +44,18 @@ def valik1(valik:int)->any:
         print(f"{nimi} : {tulemus}")
         i+=1
 
-def valik5(valik:int)->any:
+def valik2(valik:int)->str:
+    """
+    """
+    sportlased_ja_tulemused=[]
+    for i in range(len(sportlased)):
+        sportlased_ja_tulemused.append([sportlased[i]], [tulemused[i]])
+    sorteerid_sportlased_ja_tulemused=sorted(sportlased_ja_tulemused)
+    print("Cписок в порядке возрастания баллов ")
+    for j in range (len(sportlased)):
+        print(f"{j}.{sorteerid_sportlased_ja_tulemused}")
+
+def valik5(valik:int)->str:
     """
     """
     i=0

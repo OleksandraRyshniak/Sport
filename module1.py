@@ -18,12 +18,44 @@ def sport(sportlane: str, tulemus)->any:
     """
     sportlased.append(sportlane)
     tulemused.append(tulemus)
-    return sportlased, tulemus
+    return sportlased, tulemused
         
 
-def tabel(sportlased: list, tulemused:list)->any:
+def tabel(sportlased: list, tulemused:list)->None:
     """
     """
     for n in range(len(sportlased)):
-        v1=print(f"{sportlased[n]} : {tulemused[n]}")
-    return v1
+        t=print(f"{sportlased[n]} : {tulemused[n]}")
+    return t
+
+
+def valik1(valik:int)->any:
+    """
+    """
+    i=0
+    kogus=int(input("Введи количество лучших результатов: "))
+    tulemused.sort(reverse=True)
+    print(f"Топ {kogus} лучших результатов")
+    for tulemus in tulemused:
+        if i>=kogus:
+            break
+        j=tulemused.index(tulemus)
+        nimi=sportlased[j]
+        print(f"{nimi} : {tulemus}")
+        i+=1
+
+def valik5(valik:int)->any:
+    """
+    """
+    i=0
+    kogus=int(input("Введи количество худших результатов: "))
+    tulemused.sort()
+    print(f"Топ {kogus} худших результатов")
+    for tulemus in tulemused:
+        if i>=kogus:
+            break
+        j=tulemused.index(tulemus)
+        nimi=sportlased[j]
+        print(f"{nimi} : {tulemus}")
+        i+=1
+

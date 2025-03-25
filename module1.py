@@ -13,10 +13,17 @@ tulemused=[]
 # • Свой вариант.
 # Для описания действий создайте необходимые функции.
 
-def sport(sportlane: str)->bool:
+def sport(sportlane: str, tulemus)->any:
     """
     """
-    sp1=sportlased.append(sport)
-    return sportlased
+    sportlased.append(sportlane)
+    tulemused.append(tulemus)
+    return sportlased, tulemus
         
 
+def tabel(sportlased: list, tulemused:list)->any:
+    """
+    """
+    for n in range(len(sportlased)):
+        v1=print(f"{sportlased[n]} : {tulemused[n]}")
+    return v1

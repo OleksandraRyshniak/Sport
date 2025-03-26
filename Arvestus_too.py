@@ -11,7 +11,7 @@ from random import *
 # • Свой вариант.
 # Для описания действий создайте необходимые функции.
 print("Соревнования!!!")
-i=randint(3,10)
+i=randint(5,10)
 
 for j in range (1, i+1):
     while 1:
@@ -35,8 +35,7 @@ for j in range (1, i+1):
         else:
             ("Числа не должны совподать!")
     sport(sportlane, tulemus)
-print("Учасники : Результаты")
-tabel
+
 print("MENU\n",
              "1. Узнать n лучших результатов;\n", 
              "2. Упорядочить список в порядке возрастания баллов. Отобразить спортсменов их баллы и места;\n",
@@ -46,12 +45,17 @@ print("MENU\n",
 try:
     while 1:
         valik=int(input("Введите свой выбор: "))
-        if valik==1 :
+        if valik==1:
             valik1(valik)
             break
         elif valik==2:
-            valik2(valik)
+            valik2(valik,sportlased, tulemused)
             break
+        elif valik==3:
+            valik3(valik)
+            break
+        elif valik==4:
+            valik4(valik, sportlased, tulemused)
         elif valik==5:
             valik5(valik)
             break

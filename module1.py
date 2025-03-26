@@ -6,8 +6,7 @@ tulemused=[]
 # Напишите функцию sport(), при запуске которой происходит заполнение двух списков: sportlased[], tulemused[].  Список sportlased[] - заполняет пользователь, 
 # а список результаты[] – заполняется автоматически: оздаеются случайные 3 числа и наибольшее из них заносится в список.
 # После заполнения списков появляется меню с выбором действий:
-# • Узнать n лучших результатов;
-# • Упорядочить список в порядке возрастания баллов. Отобразить спортсменов их баллы и места;
+
 # • Ввести имя одного или нескольких спортсменов и показать его/их результат;
 # • Дисквалифицировать(удалить из списка)  спортсменов, у которых результаты хуже чем придуманный вами критерий;
 # • Свой вариант.
@@ -28,8 +27,8 @@ def tabel(sportlased: list, tulemused:list)->str:
         t=print(f"{sportlased[n]} : {tulemused[n]}")
     return t
 
-
-def valik1(valik:int)->str:
+# Узнать n лучших результатов;
+def valik1(valik:int)->any:
     """
     """
     i=0
@@ -44,18 +43,52 @@ def valik1(valik:int)->str:
         print(f"{nimi} : {tulemus}")
         i+=1
 
-def valik2(valik:int)->str:
+# Упорядочить список в порядке возрастания баллов. Отобразить спортсменов их баллы и места;
+def valik2(valik:int, sportlased:list, tulemused:list)->any:
     """
     """
-    sportlased_ja_tulemused=[]
-    for i in range(len(sportlased)):
-        sportlased_ja_tulemused.append([sportlased[i]], [tulemused[i]])
-    sorteerid_sportlased_ja_tulemused=sorted(sportlased_ja_tulemused)
-    print("Cписок в порядке возрастания баллов ")
-    for j in range (len(sportlased)):
-        print(f"{j}.{sorteerid_sportlased_ja_tulemused}")
+    sportlased_tulemused=list(zip(sportlased, tulemused))
+    for h in range(len(sportlased_tulemused)):
+        for i in range(h+1, len(sportlased_tulemused)):
+            if sportlased_tulemused[h][1]>sportlased_tulemused[i][1]:
+                sportlased_tulemused[h],sportlased_tulemused[i]=sportlased_tulemused[i],sportlased_tulemused[h]
+    for i in range(len(sportlased_tulemused)):
+        nimi, tulemus=sportlased_tulemused[i]
+        print(f"{i+1}.{nimi} : {tulemus}")
 
-def valik5(valik:int)->str:
+# Ввести имя одного или нескольких спортсменов и показать его/их результат;
+def valik3(valik:int)->None:
+    """
+    """
+    kogus=int(input("Введи количество спортсменов,результаты которых хочешь посмотреть: "))
+    for i in range(kogus):
+        while 1:
+            nimi=str(input("Siseta nimi: ")).capitalize()
+            if nimi in sportlased:
+                j=sportlased.index(nimi)
+                tulemus=tulemused[j]
+                h=print(f"{nimi}:{tulemus}")
+                break
+            else:
+                print("Имени нет в списке, введите другое имя.")
+    return h
+
+#Дисквалифицировать(удалить из списка)  
+#спортсменов, у которых результаты хуже чем придуманный вами критерий;
+def valik4(valik:int, sportlased:list, tulemused:list)->None:
+    """
+    """
+    res=40
+    sportlased_tulemused=list(zip(sportlased, tulemused))
+    for i in range (len(sportlased_tulemused)):
+        nimi, tulemus=sportlased_tulemused[i]
+        print(nimi, ":", tulemus)
+        if sportlased_tulemused[i][1]<40:
+            sportlased_tulemused.remove()
+        print(nimi, ":", tulemus)
+
+#Узнать n худших результатов.
+def valik5(valik:int)->any:
     """
     """
     i=0

@@ -12,29 +12,28 @@ tulemused=[]
 # • Свой вариант.
 # Для описания действий создайте необходимые функции.
 
-def sport(sportlane: str, tulemus)->any:
-    """
+def sport(sportlane: str, tulemus)->str:
+    """Nimede lisamine nimekirjadesse ja nende tulemused
+    :param str sportlane: Sisend kasutajalt 
+    :param str tulemus: Sisend kasutajalt 
+    :rtype: str tagastab vastuse stringina
     """
     sportlased.append(sportlane)
     tulemused.append(tulemus)
     return sportlased, tulemused
         
 
-def tabel(sportlased: list, tulemused:list)->str:
-    """
-    """
-    for n in range(len(sportlased)):
-        t=print(f"{sportlased[n]} : {tulemused[n]}")
-    return t
-
 # Узнать n лучших результатов;
-def valik1(valik:int)->any:
-    """
+def valik1(valik: int )->None:
+    """Tunnista n parimat tulemust
+    Kasutaja sisestab tipptulemuste arvu, mida ta soovib näha.
+    :param int valik: funktsiooni valiku number
+    :rtype: None
     """
     i=0
-    kogus=int(input("Введи количество лучших результатов: "))
+    kogus=int(input("Sisestage tipptulemuste arv: "))
     tulemused.sort(reverse=True)
-    print(f"Топ {kogus} лучших результатов")
+    print(f"Top {kogus} parimad tulemused")
     for tulemus in tulemused:
         if i>=kogus:
             break
@@ -44,8 +43,13 @@ def valik1(valik:int)->any:
         i+=1
 
 # Упорядочить список в порядке возрастания баллов. Отобразить спортсменов их баллы и места;
-def valik2(valik:int, sportlased:list, tulemused:list)->any:
-    """
+def valik2(valik: int, sportlased:list, tulemused:list)->None:
+    """Sportlaste, tulemuste ja nende kohtade kuvamine punktide järjekorras.
+    Funktsioon sorteerib sportlased tulemuste järgi kasvavas järjekorras
+    :param int valik: funktsiooni valiku number
+    :param list sportlased: Sportlaste nimede loend
+    :param list tulemused: Sportlaste tulemuste loend
+    :return: None 
     """
     sportlased_tulemused=list(zip(sportlased, tulemused))
     for h in range(len(sportlased_tulemused)):
@@ -54,13 +58,18 @@ def valik2(valik:int, sportlased:list, tulemused:list)->any:
                 sportlased_tulemused[h],sportlased_tulemused[i]=sportlased_tulemused[i],sportlased_tulemused[h]
     for i in range(len(sportlased_tulemused)):
         nimi, tulemus=sportlased_tulemused[i]
-        print(f"{i+1}.{nimi} : {tulemus}")
+        print(f"{len(sportlased_tulemused)-i}.{nimi} : {tulemus}")
 
 # Ввести имя одного или нескольких спортсменов и показать его/их результат;
-def valik3(valik:int)->None:
+def valik3(valik: int, sportlased: list, tulemused: list)->str:
+    """Funktsioon võimaldab sisestada ühe või mitme sportlase nime ja kuvab nende tulemused.
+    Kasutaja sisestab kõigepealt soovitud sportlaste arvu ja seejärel sportlaste nimed.
+    :param int valik: funktsiooni valiku number
+    :param list sportlased: Sportlaste nimede loend
+    :param list tulemused: Sportlaste tulemuste loend
+    :return: str
     """
-    """
-    kogus=int(input("Введи количество спортсменов,результаты которых хочешь посмотреть: "))
+    kogus=int(input("Sisestage nende sportlaste arv, kelle tulemusi soovite näha: "))
     for i in range(kogus):
         while 1:
             nimi=str(input("Siseta nimi: ")).capitalize()
@@ -70,31 +79,45 @@ def valik3(valik:int)->None:
                 h=print(f"{nimi}:{tulemus}")
                 break
             else:
-                print("Имени нет в списке, введите другое имя.")
+                print("Nimi ei ole nimekirjas, sisestage teine nimi.")
     return h
 
 #Дисквалифицировать(удалить из списка)  
-#спортсменов, у которых результаты хуже чем придуманный вами критерий;
-def valik4(valik:int, sportlased:list, tulemused:list)->None:
+def valik4(valik: int, sportlased: list, tulemused: list) -> None:
+    """Funktsioon kuvab kõik sportlased ja nende tulemused ning seejärel filtreerib ja kuvab
+    ainult need sportlased, kelle tulemus on võrdne või suurem kui etteantud piir.
+    :param int valik: funktsiooni valiku number
+    :param list sportlased: Sportlaste nimede loend
+    :param list tulemused: Sportlaste tulemuste loend
+    :return: None
     """
-    """
-    res=40
-    sportlased_tulemused=list(zip(sportlased, tulemused))
-    for i in range (len(sportlased_tulemused)):
-        nimi, tulemus=sportlased_tulemused[i]
+    res = 60
+    sportlased_tulemused = list(zip(sportlased, tulemused))
+    for i in range(len(sportlased_tulemused)):
+        nimi, tulemus = sportlased_tulemused[i]
         print(nimi, ":", tulemus)
-        if sportlased_tulemused[i][1]<40:
-            sportlased_tulemused.remove()
+    print("------------------------")
+    uus_list = []
+    for nimi, tulemus in sportlased_tulemused:  
+        if tulemus >= res:
+            uus_list.append((nimi, tulemus))
+    for nimi, tulemus in uus_list:  
         print(nimi, ":", tulemus)
 
+
 #Узнать n худших результатов.
-def valik5(valik:int)->any:
-    """
+def valik5(valik: int, sportlased: list, tulemused: list)->any:
+    """Funktsioon tunnistab n halvemat tulemust ja väljastab need koos sportlaste nimedega.
+    Kasutaja sisestab soovitud halvimate tulemuste arvu ning funktsioon sorteerib tulemused
+    :param int valik: funktsiooni valiku number
+    :param list sportlased: Sportlaste nimede loend
+    :param list tulemused: Sportlaste tulemuste loend
+    :return: None
     """
     i=0
-    kogus=int(input("Введи количество худших результатов: "))
+    kogus=int(input("Sisestage halvimate tulemuste arv: "))
     tulemused.sort()
-    print(f"Топ {kogus} худших результатов")
+    print(f"Top {kogus} halvimad tulemused")
     for tulemus in tulemused:
         if i>=kogus:
             break
